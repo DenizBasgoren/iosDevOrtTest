@@ -9,14 +9,16 @@
 <body>
 	<span id="a">...</span>
 	<span id="b">Wait 5 seconds</span>
+	<button id="c">pls open sensor</button>
 
 
 	<script>
 		onload = () => {
 			let a = document.getElementById('a')
 			let b = document.getElementById('b')
+			let c=  document.getElementById('c')
 
-			setTimeout(() => {
+			c.onclick = xd => {
 				if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function' ) {
 					DeviceOrientationEvent.requestPermission().then(e => {
 						a.innerHTML += `<br> permission result: ${e} <br>`
@@ -26,7 +28,7 @@
 						})
 					}).catch(er => alert(`er: ${er}`))
 				}
-			}, 5000)
+			}
 
 		}
 	</script>
