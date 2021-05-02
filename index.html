@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<span id="a">...</span>
+	<span id="b">Wait 5 seconds</span>
+
+
+	<script>
+		onload = () => {
+			let a = document.getElementById('a')
+			let b = document.getElementById('b')
+
+			setTimeout(() => {
+				if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function' ) {
+					DeviceOrientationEvent.requestPermission().then(e => {
+						a.innerHTML += `<br> permission result: ${e} <br>`
+	
+						window.addEventListener('deviceorientation', ev => {
+							b.innerHTML = `alpha ${ev.alpha}, beta ${ev.beta}, gamma ${ev.gamma}`
+						})
+					}).catch(er => alert(`er: ${er}`))
+				}
+			}, 5000)
+
+		}
+	</script>
+</body>
+</html>
